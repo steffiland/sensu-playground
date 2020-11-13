@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  sensu-cli:
+    build: 
+      context: ./cli
+      args:
+        user: ${user}
+        pw: ${pw}
+        backendurl: ${backendurl:-http://host.docker.internal:8080}
+    image: sensu-cli:latest
+    networks:
+      - sensu
+networks:
+  sensu:
+volumes:
+  sensu-backend-data:
